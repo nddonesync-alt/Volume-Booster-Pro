@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Volume Booster Pro</title>
+  <link rel="stylesheet" href="../css/popup.css">
+</head>
+<body>
+
+  <!-- Notifications -->
+  <aside class="notification js-notification">
+    <button type="button" class="notification__close js-notification__close" aria-label="Close notification">&times;</button>
+    <div class="notification__title js-notification__title"></div>
+    <div class="notification__message js-notification__message"></div>
+  </aside>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="app-brand">
+      <div class="app-brand__logo">
+        <img src="../icon/logo.svg" alt="Volume Booster Pro">
+      </div>
+      <div class="app-brand__text">
+        <div class="app-brand__title-row">
+          <span class="app-brand__title">Volume Booster</span>
+          <span class="app-brand__badge">PRO 800%</span>
+        </div>
+        <span class="app-brand__subtitle">Ultimate Sound & Equalizer</span>
+      </div>
+    </div>
+    <div class="app-controls">
+      <button type="button" class="icon-btn js-settings-switch" title="Settings" aria-label="Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Settings Pane (Collapsible) -->
+  <section class="c-settings-pane js-settings-frame is-hidden">
+    <div class="c-settings-pane__header">
+      <span class="c-settings-pane__title">Settings & Preferences</span>
+    </div>
+    
+    <div class="settings-row">
+      <div class="settings-label">
+        <span>Dark Theme (OLED Glass)</span>
+      </div>
+      <label class="switch js-dark-mode-switch">
+        <input type="checkbox" class="js-dark-mode-switch__checkbox">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <div class="settings-row">
+      <div class="settings-label">
+        <span>Invert Mouse Wheel Direction</span>
+      </div>
+      <label class="switch js-scroll-direction-switch">
+        <input type="checkbox" class="js-scroll-direction-switch__checkbox">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <div class="settings-row">
+      <div class="settings-label">
+        <span>Cycle Profiles Shortcut</span>
+      </div>
+      <div class="shortcut-recorder-wrapper">
+        <input type="text" class="shortcut-key-badge js-shortcut-profile-switch" value="V" maxlength="1" title="Click and press any key to customize shortcut" aria-label="Cycle Equalizer Profiles Shortcut Key" readonly>
+      </div>
+    </div>
+
+    <!-- Diagnostics -->
+    <div class="diagnostics js-diagnostics is-hidden">
+      <div class="diagnostics__description">Diagnostics:</div>
+      <div class="diagnostics__data js-diagnostics__data"></div>
+      <div class="diagnostics__data-encoded js-diagnostics__data-encoded"></div>
+    </div>
+  </section>
+
+  <!-- Main Volume Card (Double-Bezel Hero) -->
+  <section class="volume-card">
+    <div class="volume-card__ambient-glow"></div>
+
+    <div class="volume-card__display">
+      <div class="volume-card__number-wrapper">
+        <span class="volume-card__number js-volume-info__volume-value">100</span>
+        <span class="volume-card__percent">%</span>
+      </div>
+      <div class="volume-card__status js-volume-status">Standard Output</div>
+    </div>
+
+    <!-- Hidden span for JS max volume binding -->
+    <span class="js-volume-info__volume-max is-hidden">800</span>
+    <span class="js-volume-info__volume-min is-hidden">0</span>
+
+    <!-- Volume Slider -->
+    <div class="slider-container">
+      <input type="range" class="volume-slider__slider js-volume-slider__slider" data-max-volume="800" min="0" max="89" value="19" aria-label="Volume Boost Level">
+      <div class="slider-ticks">
+        <span>0%</span>
+        <span>100%</span>
+        <span>200%</span>
+        <span>400%</span>
+        <span>600%</span>
+        <span>800%</span>
+      </div>
+    </div>
+
+    <!-- Quick Boost Presets (Instant click) -->
+    <div class="quick-presets">
+      <button type="button" class="quick-preset-btn" data-boost="0">Mute</button>
+      <button type="button" class="quick-preset-btn is-active" data-boost="100">100%</button>
+      <button type="button" class="quick-preset-btn" data-boost="200">200%</button>
+      <button type="button" class="quick-preset-btn" data-boost="400">400%</button>
+      <button type="button" class="quick-preset-btn" data-boost="600">600%</button>
+      <button type="button" class="quick-preset-btn quick-preset-btn--extreme" data-boost="800">800%</button>
+    </div>
+
+    <!-- Actions (Reset & Restore) -->
+    <div class="volume-actions">
+      <button type="button" class="volume-actions__button js-actions__reset" disabled="disabled">
+        <i class="volume-actions__button-icon icon-reset"></i>
+        <span>Reset to default</span>
+      </button>
+      
+      <button type="button" class="volume-actions__button is-hidden js-actions__restore">
+        <i class="volume-actions__button-icon icon-history"></i>
+        <span>Restore: <strong class="js-actions__restore-value">100</strong>% for <span class="js-actions__restore-domain"></span></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Equalizer Section -->
+  <section class="section-card c-equalizer js-audio-equalizer">
+    <div class="section-title">
+      <span>Equalizer Profiles</span>
+    </div>
+
+    <div class="c-equalizer__presets">
+      <button type="button" class="c-equalizer__presets-button is-active js-audio-equalizer__preset" data-equalizer-type="default">
+        <span class="c-equalizer__presets-button-icon icon-ccw"></span>
+        <span>Default</span>
+      </button>
+      <button type="button" class="c-equalizer__presets-button js-audio-equalizer__preset" data-equalizer-type="voice">
+        <span class="c-equalizer__presets-button-icon icon-mic"></span>
+        <span>Voice Clarity</span>
+      </button>
+      <button type="button" class="c-equalizer__presets-button js-audio-equalizer__preset" data-equalizer-type="bass">
+        <span class="c-equalizer__presets-button-icon icon-rocket"></span>
+        <span>Bass Boost</span>
+      </button>
+    </div>
+
+    <!-- Collapsible Equalizer Sliders -->
+    <div class="c-equalizer__sliders is-hidden">
+      <div class="c-equalizer__slider">
+        <label>Algorithm: <select class="js-audio-equalizer__algorithm">
+          <option value="highpass">highpass</option>
+          <option value="peaking">peaking</option>
+          <option value="lowshelf">lowshelf</option>
+        </select></label>
+      </div>
+      <div class="c-equalizer__slider">
+        <label>Frequency: <span class="js-audio-equalizer__frequency-value">0</span> Hz</label>
+        <input type="range" class="c-equalizer__slider-control js-audio-equalizer__frequency" min="0" max="22050" value="0">
+      </div>
+      <div class="c-equalizer__slider">
+        <label>Q-Factor: <span class="js-audio-equalizer__q-value">1</span></label>
+        <input type="range" class="c-equalizer__slider-control js-audio-equalizer__q" min="0.0001" max="10" step="0.1" value="1">
+      </div>
+      <div class="c-equalizer__slider">
+        <label>Gain: <span class="js-audio-equalizer__gain-value">0</span> dB</label>
+        <input type="range" class="c-equalizer__slider-control js-audio-equalizer__gain" min="-40" max="40" value="0">
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Audio Analyser Visualizer -->
+  <section class="c-analyser js-audio-analyser is-hidden">
+    <div class="c-analyser__pane js-audio-analyser__before-wrapper is-hidden">
+      <canvas class="c-analyser__canvas js-audio-analyser__before-canvas"></canvas>
+      <span class="c-analyser__freq-end js-audio-analyser__before-freq-end">22.05 kHz</span>
+    </div>
+    <div class="c-analyser__pane js-audio-analyser__after-wrapper is-hidden">
+      <canvas class="c-analyser__canvas js-audio-analyser__after-canvas"></canvas>
+      <span class="c-analyser__freq-end js-audio-analyser__after-freq-end">22.05 kHz</span>
+    </div>
+  </section>
+
+  <!-- Active Audio Tabs -->
+  <section class="tabs-container">
+    <div class="section-title js-tabs__title">
+      <span>Tabs Playing Audio</span>
+    </div>
+
+    <div class="tabs__list js-tabs__list"></div>
+
+    <!-- Tab Template -->
+    <template class="js-template-tab">
+      <div class="tab js-tab">
+        <div class="tab__item--icon">
+          <img class="tab__icon-image js-tab__icon-image" src="" alt="">
+        </div>
+        <a href="#" class="tab__title js-tab__title js-tab__link" target="_blank"></a>
+        <div class="tab__badge">
+          <div class="soundwave-bar"></div>
+          <div class="soundwave-bar"></div>
+          <div class="soundwave-bar"></div>
+        </div>
+      </div>
+    </template>
+  </section>
+
+  <!-- App Footer / Author Info -->
+  <footer class="app-footer">
+    <span class="app-footer__text">Developed with <span class="app-footer__heart">❤️</span> by <strong>taoladuyne</strong></span>
+    <a href="https://github.com/nddonesync-alt/Volume-Booster-Pro" target="_blank" class="app-footer__github-link js-app-footer__github-link" title="GitHub Repository" aria-label="GitHub Repository">
+      <svg class="app-footer__github-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+    </a>
+  </footer>
+
+  <script src="../js/popup.js"></script>
+</body>
+</html>
